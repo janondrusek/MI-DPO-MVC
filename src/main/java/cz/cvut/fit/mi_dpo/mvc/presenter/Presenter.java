@@ -1,5 +1,7 @@
 package cz.cvut.fit.mi_dpo.mvc.presenter;
 
-public interface Presenter {
+import java.util.Observer;
+
+public interface Presenter extends Observer {
 
 }

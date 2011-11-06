@@ -17,11 +17,11 @@ public abstract class AbstractPresenter<T extends ShapeView> implements Presente
 	abstract protected void addListeners();
 
 	protected void addCircle(Circle circle) {
-		ShapeStorageService.INSTANCE.save(circle);
+		ShapeStorageService.getInstance().save(circle);
 	}
 
 	protected void addSquare(Square square) {
-		ShapeStorageService.INSTANCE.save(square);
+		ShapeStorageService.getInstance().save(square);
 	}
 
 	protected T getView() {

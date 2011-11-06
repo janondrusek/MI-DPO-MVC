@@ -6,8 +6,6 @@ import org.apache.commons.lang3.StringUtils;
 
 public abstract class AbstractShape implements Shape {
 
-	private static final int DEFAULT_SIZE = 10;
-
 	private String id;
 
 	private int size;
@@ -16,11 +14,11 @@ public abstract class AbstractShape implements Shape {
 
 	protected AbstractShape() {
 		id = StringUtils.EMPTY;
-		size = DEFAULT_SIZE;
 	}
 
-	protected AbstractShape(Point position) {
+	protected AbstractShape(int size, Point position) {
 		this();
+		this.size = size;
 		this.position = position;
 	}
 

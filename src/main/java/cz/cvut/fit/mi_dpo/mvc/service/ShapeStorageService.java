@@ -1,9 +1,10 @@
 package cz.cvut.fit.mi_dpo.mvc.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.Observable;
 import java.util.UUID;
 
 import org.apache.commons.lang3.StringUtils;
@@ -12,43 +13,68 @@ import cz.cvut.fit.mi_dpo.mvc.model.Circle;
 import cz.cvut.fit.mi_dpo.mvc.model.Shape;
 import cz.cvut.fit.mi_dpo.mvc.model.Square;
 
-public enum ShapeStorageService {
-	INSTANCE;
+public class ShapeStorageService extends Observable {
 
-	private Set<String> circles = new TreeSet<String>();
+	private Map<String, Circle> circles = new HashMap<String, Circle>();
 
-	private Set<String> squares = new TreeSet<String>();
+	private Map<String, Square> squares = new HashMap<String, Square>();
 
-	private Map<String, Shape> shapes = new HashMap<String, Shape>();
+	private static ShapeStorageService instance;
 
-	public Map<String, Shape> getShapes() {
+	private ShapeStorageService() {
+
+	}
+
+	public synchronized static ShapeStorageService getInstance() {
+		if (instance == null) {
+			instance = new ShapeStorageService();
+		}
+		return instance;
+	}
+
+	public List<Shape> getShapes() {
+		List<Shape> shapes = new ArrayList<Shape>(circles.values());
+		shapes.addAll(squares.values());
+
 		return shapes;
 	}
 
+	public List<Circle> getCircles() {
+		return new ArrayList<Circle>(circles.values());
+	}
+
+	public List<Square> getSquares() {
+		return new ArrayList<Square>(squares.values());
+	}
+
 	public void save(Circle circle) {
-		store(store(circle), circles);
+		ensureId(circle);
+		circles.put(circle.getId(), circle);
+
+		setChanged();
+		notifyObservers();
 	}
 
 	public void save(Square square) {
-		store(store(square), squares);
+		ensureId(square);
+		squares.put(square.getId(), square);
+
+		setChanged();
+		notifyObservers();
 	}
 
-	private void store(String id, Set<String> shapes) {
-		shapes.add(id);
-	}
-
-	private String store(Shape shape) {
+	private void ensureId(Shape shape) {
 		if (shape.getId().equals(StringUtils.EMPTY)) {
 			shape.setId(generateId());
 		}
-		shapes.put(shape.getId(), shape);
-		return shape.getId();
 	}
 
 	public void deleteAll() {
 		circles.clear();
-		shapes.clear();
 		squares.clear();
+
+		setChanged();
+		notifyObservers();
 	}
 
 	private String generateId() {

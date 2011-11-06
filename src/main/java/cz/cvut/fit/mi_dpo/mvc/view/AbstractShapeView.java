@@ -10,7 +10,7 @@ abstract public class AbstractShapeView<T extends Presenter> implements ShapeVie
 		this.presenter = presenter;
 	}
 
-	protected T getPresenter() {
+	public T getPresenter() {
 		return presenter;
 	}
 

@@ -22,7 +22,6 @@ public class CanvasShapeView extends AbstractShapeView<CanvasShapePresenter> {
 
 		canvas.setMinimumSize(new Dimension(300, 400));
 		canvas.setPreferredSize(new Dimension(300, 400));
-		canvas.setVisible(true);
 	}
 
 	public void setShapes(List<Shape> shapes) {

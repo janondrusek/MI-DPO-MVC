@@ -1,27 +1,23 @@
 package cz.cvut.fit.mi_dpo.mvc.model.table;
 
-import javax.swing.table.AbstractTableModel;
+import cz.cvut.fit.mi_dpo.mvc.service.ShapeStorageService;
 
-public class SquareTableModel extends AbstractTableModel {
+public class SquareTableModel extends AbstractShapeTableModel {
 
 	private static final long serialVersionUID = 5479831356906203866L;
 
 	@Override
-	public int getRowCount() {
-		// TODO Auto-generated method stub
-		return 0;
+	protected String[] getColumnNames() {
+		return new String[] { "ID", "X", "Y", "a" };
 	}
 
 	@Override
-	public int getColumnCount() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int getRowCount() {
+		return ShapeStorageService.getInstance().getSquares().size();
 	}
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		// TODO Auto-generated method stub
-		return null;
+		return getValue(ShapeStorageService.getInstance().getSquares().get(rowIndex), columnIndex);
 	}
-
 }

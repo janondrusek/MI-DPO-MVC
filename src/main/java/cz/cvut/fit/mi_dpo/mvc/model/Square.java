@@ -6,7 +6,7 @@ import java.awt.Point;
 public class Square extends AbstractShape {
 
 	public Square(Point position) {
-		super(position);
+		super(20, position);
 	}
 
 	@Override

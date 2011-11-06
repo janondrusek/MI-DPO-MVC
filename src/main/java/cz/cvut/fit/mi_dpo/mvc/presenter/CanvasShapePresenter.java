@@ -3,8 +3,8 @@ package cz.cvut.fit.mi_dpo.mvc.presenter;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
 import cz.cvut.fit.mi_dpo.mvc.model.Circle;
 import cz.cvut.fit.mi_dpo.mvc.model.Shape;
@@ -50,15 +50,19 @@ public class CanvasShapePresenter extends AbstractPresenter<CanvasShapeView> {
 				} else if (e.getButton() == MouseEvent.BUTTON3) {
 					addSquare(e.getPoint());
 				}
-				getView().setShapes(getShapes());
-				getView().repaint();
 			}
 
 		});
 	}
 
+	@Override
+	public void update(Observable o, Object arg) {
+		getView().setShapes(getShapes());
+		getView().repaint();
+	}
+
 	private List<Shape> getShapes() {
-		return new ArrayList<Shape>(ShapeStorageService.INSTANCE.getShapes().values());
+		return ShapeStorageService.getInstance().getShapes();
 	}
 
 	public void addCircle(Point point) {

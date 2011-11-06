@@ -6,7 +6,7 @@ import java.awt.Point;
 public class Circle extends AbstractShape {
 
 	public Circle(Point position) {
-		super(position);
+		super(10, position);
 	}
 
 	@Override
