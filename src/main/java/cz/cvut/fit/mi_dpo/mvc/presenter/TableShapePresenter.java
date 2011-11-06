@@ -8,4 +8,9 @@ public class TableShapePresenter extends AbstractPresenter<TableShapeView> {
 		super(view);
 	}
 
+	@Override
+	protected void addListeners() {
+		
+	}
+
 }

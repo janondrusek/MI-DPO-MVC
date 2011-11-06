@@ -19,7 +19,8 @@ public class CanvasShapePresenter extends AbstractPresenter<CanvasShapeView> {
 		addListeners();
 	}
 
-	private void addListeners() {
+	@Override
+	protected void addListeners() {
 		getView().getComponent().addMouseListener(new MouseListener() {
 
 			@Override
@@ -61,11 +62,11 @@ public class CanvasShapePresenter extends AbstractPresenter<CanvasShapeView> {
 	}
 
 	public void addCircle(Point point) {
-		addShape(new Circle(point));
+		addCircle(new Circle(point));
 	}
 
 	public void addSquare(Point point) {
-		addShape(new Square(point));
+		addSquare(new Square(point));
 	}
 
 }

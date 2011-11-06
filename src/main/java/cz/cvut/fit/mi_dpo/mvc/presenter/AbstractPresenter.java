@@ -1,6 +1,7 @@
 package cz.cvut.fit.mi_dpo.mvc.presenter;
 
-import cz.cvut.fit.mi_dpo.mvc.model.Shape;
+import cz.cvut.fit.mi_dpo.mvc.model.Circle;
+import cz.cvut.fit.mi_dpo.mvc.model.Square;
 import cz.cvut.fit.mi_dpo.mvc.service.ShapeStorageService;
 import cz.cvut.fit.mi_dpo.mvc.view.ShapeView;
 
@@ -10,10 +11,17 @@ public abstract class AbstractPresenter<T extends ShapeView> implements Presente
 
 	protected AbstractPresenter(T view) {
 		this.view = view;
+		addListeners();
 	}
 
-	protected void addShape(Shape shape) {
-		ShapeStorageService.INSTANCE.save(shape);
+	abstract protected void addListeners();
+
+	protected void addCircle(Circle circle) {
+		ShapeStorageService.INSTANCE.save(circle);
+	}
+
+	protected void addSquare(Square square) {
+		ShapeStorageService.INSTANCE.save(square);
 	}
 
 	protected T getView() {
