@@ -2,8 +2,6 @@ package cz.cvut.fit.mi_dpo.mvc.model;
 
 import java.awt.Point;
 
-import org.apache.commons.lang3.StringUtils;
-
 public abstract class AbstractShape implements Shape {
 
 	private String id;
@@ -13,7 +11,7 @@ public abstract class AbstractShape implements Shape {
 	private Point position;
 
 	protected AbstractShape() {
-		id = StringUtils.EMPTY;
+		id = "";
 	}
 
 	protected AbstractShape(int size, Point position) {

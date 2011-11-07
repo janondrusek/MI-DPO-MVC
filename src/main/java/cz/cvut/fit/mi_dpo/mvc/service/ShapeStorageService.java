@@ -7,8 +7,6 @@ import java.util.Map;
 import java.util.Observable;
 import java.util.UUID;
 
-import org.apache.commons.lang3.StringUtils;
-
 import cz.cvut.fit.mi_dpo.mvc.model.Circle;
 import cz.cvut.fit.mi_dpo.mvc.model.Shape;
 import cz.cvut.fit.mi_dpo.mvc.model.Square;
@@ -68,7 +66,7 @@ public class ShapeStorageService extends Observable {
 	}
 
 	private void ensureId(Shape shape) {
-		if (shape.getId().equals(StringUtils.EMPTY)) {
+		if (shape.getId().equals("")) {
 			shape.setId(generateId());
 		}
 	}
