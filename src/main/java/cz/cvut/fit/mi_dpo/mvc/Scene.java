@@ -1,7 +1,10 @@
 package cz.cvut.fit.mi_dpo.mvc;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.table.TableModel;
 
@@ -33,6 +36,17 @@ public class Scene extends JFrame {
 
 		ShapeStorageService.getInstance().addObserver(canvasView.getPresenter());
 		ShapeStorageService.getInstance().addObserver(tableView.getPresenter());
+
+		JButton clearAll = new JButton("Clear all");
+		add(clearAll, BorderLayout.SOUTH);
+
+		clearAll.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ShapeStorageService.getInstance().deleteAll();
+			}
+		});
 	}
 
 	private TableModel[] getTableModels() {

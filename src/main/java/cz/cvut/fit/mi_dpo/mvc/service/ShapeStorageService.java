@@ -13,6 +13,12 @@ import cz.cvut.fit.mi_dpo.mvc.model.Circle;
 import cz.cvut.fit.mi_dpo.mvc.model.Shape;
 import cz.cvut.fit.mi_dpo.mvc.model.Square;
 
+/**
+ * Singleton service is nothing more than a Shape storage Because I have to keep
+ * Shape superclass, each superclass is stored in its own map
+ * 
+ * This is Observable model, triggers all Obervers to repaint when changed
+ */
 public class ShapeStorageService extends Observable {
 
 	private Map<String, Circle> circles = new LinkedHashMap<String, Circle>();
@@ -51,16 +57,14 @@ public class ShapeStorageService extends Observable {
 		ensureId(circle);
 		circles.put(circle.getId(), circle);
 
-		setChanged();
-		notifyObservers();
+		notifyPresenters();
 	}
 
 	public void save(Square square) {
 		ensureId(square);
 		squares.put(square.getId(), square);
 
-		setChanged();
-		notifyObservers();
+		notifyPresenters();
 	}
 
 	private void ensureId(Shape shape) {
@@ -73,6 +77,10 @@ public class ShapeStorageService extends Observable {
 		circles.clear();
 		squares.clear();
 
+		notifyPresenters();
+	}
+
+	private void notifyPresenters() {
 		setChanged();
 		notifyObservers();
 	}
