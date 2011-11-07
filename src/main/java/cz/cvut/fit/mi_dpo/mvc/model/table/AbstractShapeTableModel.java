@@ -33,10 +33,13 @@ public abstract class AbstractShapeTableModel extends AbstractTableModel {
 			break;
 		case 1:
 			value = shape.getPosition().getX();
+			break;
 		case 2:
 			value = shape.getPosition().getY();
+			break;
 		case 3:
 			value = shape.getSize();
+			break;
 		default:
 			break;
 		}

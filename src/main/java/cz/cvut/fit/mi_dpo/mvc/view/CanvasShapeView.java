@@ -20,8 +20,8 @@ public class CanvasShapeView extends AbstractShapeView<CanvasShapePresenter> {
 	private void initCanvas() {
 		canvas = new ShapeCanvas();
 
-		canvas.setMinimumSize(new Dimension(300, 400));
 		canvas.setPreferredSize(new Dimension(300, 400));
+		canvas.setMaximumSize(new Dimension(300, Integer.MAX_VALUE));
 	}
 
 	public void setShapes(List<Shape> shapes) {

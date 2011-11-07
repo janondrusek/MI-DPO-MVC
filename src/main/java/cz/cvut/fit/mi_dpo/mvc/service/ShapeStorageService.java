@@ -1,7 +1,7 @@
 package cz.cvut.fit.mi_dpo.mvc.service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Observable;
@@ -15,9 +15,9 @@ import cz.cvut.fit.mi_dpo.mvc.model.Square;
 
 public class ShapeStorageService extends Observable {
 
-	private Map<String, Circle> circles = new HashMap<String, Circle>();
+	private Map<String, Circle> circles = new LinkedHashMap<String, Circle>();
 
-	private Map<String, Square> squares = new HashMap<String, Square>();
+	private Map<String, Square> squares = new LinkedHashMap<String, Square>();
 
 	private static ShapeStorageService instance;
 
