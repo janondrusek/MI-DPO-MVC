@@ -14,4 +14,6 @@ public interface Shape {
 	public Point getPosition();
 
 	public void paint(Graphics g);
+
+	public void setSize(int size);
 }

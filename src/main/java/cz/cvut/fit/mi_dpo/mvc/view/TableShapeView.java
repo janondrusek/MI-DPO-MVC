@@ -2,11 +2,12 @@ package cz.cvut.fit.mi_dpo.mvc.view;
 
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.TableModel;
 
@@ -19,14 +20,14 @@ public class TableShapeView extends AbstractShapeView<TableShapePresenter> {
 	private JPanel panel;
 
 	public TableShapeView(TableModel[] tableModels) {
-		initPanel();
+		initPanel(tableModels.length);
 		initTables(tableModels);
 		setPresenter(new TableShapePresenter(this));
 	}
 
-	private void initPanel() {
+	private void initPanel(int rows) {
 		panel = new JPanel();
-		panel.setLayout(new FlowLayout(FlowLayout.LEFT));
+		panel.setLayout(new GridLayout(rows, 0));
 		panel.setMinimumSize(new Dimension(300, 400));
 		panel.setPreferredSize(new Dimension(300, 400));
 	}
@@ -34,11 +35,17 @@ public class TableShapeView extends AbstractShapeView<TableShapePresenter> {
 	private void initTables(TableModel[] tableModels) {
 		tables = new ArrayList<JTable>();
 		for (TableModel tableModel : tableModels) {
+
 			JTable table = new JTable(tableModel);
 
 			table.setMinimumSize(new Dimension(300, 400 / tableModels.length));
 			table.setPreferredSize(new Dimension(300, 400 / tableModels.length));
-			panel.add(table);
+
+			table.setPreferredScrollableViewportSize(new Dimension(300, 400 / tableModels.length));
+			table.setFillsViewportHeight(true);
+
+			JScrollPane scrollPane = new JScrollPane(table);
+			panel.add(scrollPane);
 			tables.add(table);
 		}
 	}

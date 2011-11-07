@@ -19,6 +19,7 @@ public class Scene extends JFrame {
 	protected Scene() {
 		super();
 		init();
+
 	}
 
 	private void init() {

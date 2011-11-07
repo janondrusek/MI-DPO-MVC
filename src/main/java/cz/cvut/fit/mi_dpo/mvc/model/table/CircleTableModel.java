@@ -1,5 +1,6 @@
 package cz.cvut.fit.mi_dpo.mvc.model.table;
 
+import cz.cvut.fit.mi_dpo.mvc.model.Circle;
 import cz.cvut.fit.mi_dpo.mvc.service.ShapeStorageService;
 
 public class CircleTableModel extends AbstractShapeTableModel {
@@ -14,6 +15,17 @@ public class CircleTableModel extends AbstractShapeTableModel {
 	@Override
 	public int getRowCount() {
 		return ShapeStorageService.getInstance().getCircles().size();
+	}
+
+	@Override
+	public void setValueAt(Object aValue, int row, int column) {
+		update(ShapeStorageService.getInstance().getCircles().get(row), aValue, column);
+		super.setValueAt(aValue, row, column);
+	}
+
+	private void update(Circle circle, Object aValue, int column) {
+		updateColumn(circle, aValue, column);
+		ShapeStorageService.getInstance().save(circle);
 	}
 
 	@Override

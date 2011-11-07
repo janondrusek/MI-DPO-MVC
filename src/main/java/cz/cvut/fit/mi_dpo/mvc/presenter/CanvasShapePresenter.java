@@ -16,7 +16,6 @@ public class CanvasShapePresenter extends AbstractPresenter<CanvasShapeView> {
 
 	public CanvasShapePresenter(CanvasShapeView view) {
 		super(view);
-		addListeners();
 	}
 
 	@Override
